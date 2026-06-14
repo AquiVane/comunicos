@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://comunicos.cosmart.com.ar/sitemap.xml
