@@ -683,6 +683,10 @@ footer{background:#0a0a0a;color:#fff;padding:48px 32px 22px;}
           <div class="fg full"><label>Mensaje adicional</label><textarea name="mensaje" rows="3" placeholder="Contanos más sobre tu negocio o lo que necesitás..."></textarea></div>
         </div>
         <p class="flegal">Al enviar aceptás nuestras <span class="ll" onclick="document.getElementById('mbyc').classList.add('open')">Bases y Condiciones</span> y <span class="ll" onclick="document.getElementById('mpriv').classList.add('open')">Política de Privacidad</span>.</p>
+        <label style="display:flex;align-items:flex-start;gap:.5rem;margin-top:10px;cursor:pointer;">
+          <input type="checkbox" id="privacyCheck" checked required style="width:16px;height:16px;padding:0;margin-top:2px;flex-shrink:0;accent-color:var(--az);">
+          <span style="font-size:.75rem;color:var(--sub);line-height:1.5;">Acepto la <a href="https://cosmart.com.ar/politica-de-privacidad" target="_blank" style="color:var(--az);">Política de Privacidad</a> de COSMART y consiento recibir comunicaciones del ecosistema COSMART.</span>
+        </label>
         <button type="submit" class="btn-sub">Quiero mi análisis gratuito</button>
       </form>
     </div>
@@ -847,6 +851,8 @@ function pSz(b,v){document.querySelectorAll('.sb').forEach(x=>x.classList.remove
 function pPl(e,v){document.querySelectorAll('.pp').forEach(x=>x.classList.remove('s'));e.classList.add('s');document.getElementById('plV').value=v;}
 function doSub(e){
   e.preventDefault();
+  const consent=document.getElementById('privacyCheck');
+  if(consent&&!consent.checked){alert('Debés aceptar la Política de Privacidad para continuar.');return;}
   const rr=['instagram','facebook','tiktok','linkedin','youtube','twitter','threads'];
   const web=document.querySelector('[name=web]');
   const hr=rr.some(f=>{const x=document.querySelector('[name='+f+']');return x&&x.value.trim()!='';});
