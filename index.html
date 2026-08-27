@@ -916,9 +916,10 @@ function doSub(e){
   const pre={instagram:'https://www.instagram.com/',facebook:'https://www.facebook.com/',tiktok:'https://www.tiktok.com/@',linkedin:'https://www.linkedin.com/in/',youtube:'https://www.youtube.com/@',twitter:'https://www.x.com/',threads:'https://www.threads.net/@'};
   const fd=new FormData(document.getElementById('theForm'));
   for(const[k,p]of Object.entries(pre)){const v=fd.get(k);if(v&&v.trim())fd.set(k,p+v.trim());}
-  fetch('https://formspree.io/f/xnjwnebw',{method:'POST',body:fd,headers:{'Accept':'application/json'}})
-    .then(r=>{if(r.ok){document.getElementById('form-area').style.display='none';document.getElementById('gracias').classList.add('show');}else alert('Error al enviar. Escribinos: comunicos@cosmart.com.ar');})
-    .catch(()=>alert('Error de conexión. Escribinos: comunicos@cosmart.com.ar'));
+  const datos=Object.fromEntries(fd.entries());
+  fetch('https://cosmart-design.conglomeradocosmart.workers.dev/comunicos/contacto',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(datos)})
+    .then(r=>{if(r.ok){document.getElementById('form-area').style.display='none';document.getElementById('gracias').classList.add('show');}else alert('Error al enviar. Escribinos: info@cosmart.com.ar');})
+    .catch(()=>alert('Error de conexión. Escribinos: info@cosmart.com.ar'));
 }
 document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');}));
 </script>
